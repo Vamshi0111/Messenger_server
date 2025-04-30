@@ -1,0 +1,42 @@
+import { Router } from "express";
+import usersRouter from "./users";
+import chatRouter from "./chat";
+import memeRouter from "./meme";
+import sessionRouter from "./session";
+import conversationsRouter from "./Conversations";
+import roomsRouter from "./RoomsScreen";
+import notificationRouter from "./chat_notification";
+import feedbackRouter from "./feedback";
+import status_updateRouter from "./status_update";
+import VipMembershiprouter from "./vip_membership";
+import switchAccountsRouter from "./switchaccounts";
+import peopleRouter from "./people";
+import MessageRouter from "./message";
+import userAuthRouter from "./authuser";
+import otpRouter from "./otp";
+import emailrecoveryRouter from "./emailrecovery";
+import AddfriendRouter from "./addfriend";
+import { authenticateUser } from "../middleware/userAuthMiddleware";
+import friendRequestRouter from "./friendRequest";
+const routes = Router();
+
+routes.use('/users',usersRouter);
+routes.use('/chat',authenticateUser,chatRouter);
+routes.use('/meme',authenticateUser, memeRouter);
+routes.use('/session',authenticateUser, sessionRouter)
+routes.use('/conversation',authenticateUser, conversationsRouter);
+routes.use('/rooms',authenticateUser, roomsRouter);
+routes.use('/notification',authenticateUser,notificationRouter);
+routes.use('/feedback',authenticateUser, feedbackRouter);
+routes.use('/status_update',authenticateUser, status_updateRouter);
+routes.use('/vipmembership',authenticateUser, VipMembershiprouter);
+routes.use('/switchAccount',authenticateUser, switchAccountsRouter);
+routes.use('/people',authenticateUser, peopleRouter);
+routes.use('/messagetable',authenticateUser,MessageRouter);
+routes.use('/auth',userAuthRouter );
+routes.use('/Addfriend',authenticateUser,AddfriendRouter );
+routes.use('/friendRequest',authenticateUser,friendRequestRouter);
+routes.use('/otp',authenticateUser,otpRouter );
+routes.use("/emailrecovery",authenticateUser,emailrecoveryRouter);  
+
+export default routes;
